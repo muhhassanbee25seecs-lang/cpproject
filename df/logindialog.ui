@@ -94,7 +94,7 @@
          <size><width>0</width><height>80</height></size>
         </property>
         <property name="styleSheet">
-         <string notr="true">image: url(:/res1/Graduation_Cap_PNG_Picture.png);</string>
+         <string notr="true">image: url(/app/df/Graduation_Cap_PNG_Picture.png);</string>
         </property>
         <property name="alignment">
          <enum>Qt::AlignCenter</enum>

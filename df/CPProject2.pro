@@ -53,9 +53,3 @@ DISTFILES += \
     images/report.png \
     images/upload.png
 
-RESOURCES += \
-    img.qrc \
-    img2.qrc \
-    img3.qrc \
-    img5.qrc \
-    img6.qrc

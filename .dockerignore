@@ -1,3 +1,24 @@
+# IDE and Version Control
 .git/
 .vscode/
-*.jpg
+
+
+# Binaries and Compiled Files (Crucial to ignore these)
+*.exe
+*.dll
+*.o
+*.obj
+*.Debug
+*.Release
+
+# Private/Sensitive Configs (Do not upload your EZVIZ links!)
+
+
+# Temporary/Cache files
+*.user
+*.qmake.stash
+
+# Resources (Uncomment if you REALLY want to ignore JPGs, 
+# but keep .qrc files allowed so Docker can build)
+
+!*.qrc
