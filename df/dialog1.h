@@ -21,16 +21,17 @@ private slots:
     void on_btn_save_clicked();      // Saves attendance to /app/inventory
     void on_pushButton_clicked();    // Toggles ABSENT/PRESENT status
     void on_pushButton_2_clicked();  // Connects to IP Webcam and captures immediately
-
+    void processConfigCapture();
 private:
     Ui::Dialog1 *ui;
     
     // --- IP WEBCAM SYSTEM ---
-    cv::VideoCapture m_cap;         // OpenCV object to handle camera.conf URL
-
+    cv::VideoCapture m_cap;         
     // --- RECOGNITION PIPELINE ---
+    QTimer *m_timer;
     void runRecognition();           // Executes ./recognize
     void readStudentInfo(QString folderName); // Reads data from /app/dataset/ID
+    QString readConfigPath();
 };
 
 #endif

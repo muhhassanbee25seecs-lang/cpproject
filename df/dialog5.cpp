@@ -10,6 +10,7 @@
 #include <opencv2/opencv.hpp>
 #include <QPainter>
 #include <QPainterPath>
+#include <QInputDialog> // For selection logic
 
 Dialog5::Dialog5(QWidget *parent) :
     QDialog(parent),
@@ -24,19 +25,31 @@ Dialog5::~Dialog5()
     delete ui;
 }
 
-//Helper: Read URL from camera.conf
+// Updated Helper: Allows choosing which IP from the file if multiple exist
 QString Dialog5::readConfigPath() {
     QFile configFile("/app/camera.conf");
+    QStringList options;
+
     if (configFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&configFile);
-        QString line = in.readLine().trimmed();
+        while (!in.atEnd()) {
+            QString line = in.readLine().trimmed();
+            if (!line.isEmpty()) options << line;
+        }
         configFile.close();
-        return line;
     }
-    return QString();
+
+    if (options.isEmpty()) return QString();
+    if (options.size() == 1) return options.first(); // Return single IP immediately
+
+    // Multiple IPs? Ask the user which one to connect to
+    bool ok;
+    QString selected = QInputDialog::getItem(this, "Select Camera", 
+                                             "Choose the IP Webcam:", 
+                                             options, 0, false, &ok);
+    return (ok && !selected.isEmpty()) ? selected : QString();
 }
 
-//CAPTURE & RECOGNIZE
 void Dialog5::on_btnCapturePhoto_clicked()
 {
     ui->btnCapturePhoto->setEnabled(false);
@@ -44,13 +57,12 @@ void Dialog5::on_btnCapturePhoto_clicked()
 
     QString url = readConfigPath();
     if (url.isEmpty()) {
-        QMessageBox::critical(this, "Error", "Config /app/camera.conf is missing or empty.");
         ui->btnCapturePhoto->setEnabled(true);
         ui->btnCapturePhoto->setText("CAPTURE PHOTO");
         return;
     }
 
-    // Open IP Stream
+    // 1. Open IP Stream
     if (!m_cap.open(url.toStdString())) {
         QMessageBox::critical(this, "Connection Error", "Cannot reach IP Webcam: " + url);
         ui->btnCapturePhoto->setEnabled(true);
@@ -58,8 +70,8 @@ void Dialog5::on_btnCapturePhoto_clicked()
         return;
     }
 
+    // 2. Flush buffer to get live frame
     cv::Mat frame;
-    // Flush buffer to get live frame
     for(int i = 0; i < 5; i++) { m_cap.read(frame); }
 
     if (frame.empty()) {
@@ -69,24 +81,21 @@ void Dialog5::on_btnCapturePhoto_clicked()
         return;
     }
 
-    //ORIENTATION: 90 DEGREES ANTICLOCKWISE
+    // 3. Orientation: 90 Degrees Anticlockwise
     cv::Mat rotatedFrame;
     cv::rotate(frame, rotatedFrame, cv::ROTATE_90_COUNTERCLOCKWISE);
-
-    // Save for recognition script
     cv::imwrite("/app/test.jpg", rotatedFrame);
-    m_cap.release(); // Close stream
+    m_cap.release(); 
 
-    // Show in UI
+    // 4. Circular Masking Logic
     cv::Mat rgbFrame;
     cv::cvtColor(rotatedFrame, rgbFrame, cv::COLOR_BGR2RGB);
-    QImage qimg((const unsigned char*)(rgbFrame.data), rgbFrame.cols, rgbFrame.rows, rgbFrame.step, QImage::Format_RGB888);
+    QImage qimg((const uchar*)(rgbFrame.data), rgbFrame.cols, rgbFrame.rows, rgbFrame.step, QImage::Format_RGB888);
     
-    //CONVERT TO CIRCLE MASK
     QPixmap originalPixmap = QPixmap::fromImage(qimg.copy());
     int size = qMin(ui->student_picture_frame->width(), ui->student_picture_frame->height());
-    
-    // Create a square transparent canvas
+    if (size <= 0) size = 200; // Fallback if UI hasn't rendered size
+
     QPixmap roundedPixmap(size, size);
     roundedPixmap.fill(Qt::transparent);
 
@@ -94,22 +103,19 @@ void Dialog5::on_btnCapturePhoto_clicked()
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setRenderHint(QPainter::SmoothPixmapTransform);
 
-    // Create a circular clipping path
     QPainterPath path;
     path.addEllipse(0, 0, size, size);
     painter.setClipPath(path);
 
-    // Draw the original image onto the circle
     painter.drawPixmap(0, 0, size, size, originalPixmap.scaled(size, size, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation));
     painter.end();
 
-    // Set the circular pixmap to the label
     ui->student_picture_frame->setPixmap(roundedPixmap);
     ui->student_picture_frame->setAlignment(Qt::AlignCenter);
 
     ui->btnCapturePhoto->setText("Recognizing...");
 
-    // Start Recognition Process
+    // 5. Recognition Process
     QProcess *recognizeProcess = new QProcess(this);
     recognizeProcess->setWorkingDirectory("/app/src"); 
 
@@ -143,6 +149,8 @@ void Dialog5::on_btnCapturePhoto_clicked()
 
     recognizeProcess->start("./recognize", QStringList());
 }
+
+// ... rest of the code (fetchStudentInfo, cleanLogs, on_btnConfirmDelete_clicked) remains the same ...
 
 // 2. FETCH STUDENT NAME
 void Dialog5::fetchStudentInfo(QString id) {
