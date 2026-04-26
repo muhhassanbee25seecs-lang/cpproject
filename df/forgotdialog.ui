@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ForgotDialog</class>
+ <widget class="QDialog" name="ForgotDialog">
+  <property name="geometry"><rect><x>0</x><y>0</y><width>400</width><height>350</height></rect></property>
+  <property name="windowTitle"><string>Account Recovery</string></property>
+  <property name="styleSheet">
+   <string notr="true">
+    QDialog { background-color: #0f172a; }
+    QFrame#card { background-color: #1e293b; border-radius: 15px; border: 1px solid #334155; }
+    QLabel { color: #94a3b8; font-family: "Segoe UI"; font-size: 12px; }
+    QLineEdit { background-color: #0f172a; border: 1px solid #334155; border-radius: 6px; padding: 8px; color: white; }
+    QPushButton#resetBtn { background: #00d2ff; color: #0f172a; font-weight: bold; border-radius: 8px; padding: 10px; }
+   </string>
+  </property>
+  <layout class="QVBoxLayout" name="main">
+   <item>
+    <widget class="QFrame" name="card">
+     <layout class="QVBoxLayout" name="cardLayout">
+      <property name="spacing"><number>15</number></property>
+      <item><widget class="QLabel" name="title"><property name="text"><string>Identity Verification</string></property><property name="styleSheet"><string>font-size: 16px; color: white; font-weight: bold;</string></property></widget></item>
+      
+      <item>
+       <layout class="QVBoxLayout" name="idLay">
+        <item><widget class="QLabel" name="l1"><property name="text"><string>Registration ID / Username</string></property></widget></item>
+        <item><widget class="QLineEdit" name="idEdit"/></item>
+       </layout>
+      </item>
+
+      <item>
+       <layout class="QVBoxLayout" name="ansLay">
+        <item><widget class="QLabel" name="l2"><property name="text"><string>Security Question: Your Mother's Maiden Name?</string></property></widget></item>
+        <item><widget class="QLineEdit" name="answerEdit"/></item>
+       </layout>
+      </item>
+
+      <item><widget class="QPushButton" name="resetBtn"><property name="text"><string>VERIFY &amp; RESET</string></property></widget></item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+</ui>

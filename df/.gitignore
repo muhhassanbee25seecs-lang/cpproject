@@ -1,0 +1,6 @@
+*.o
+Makefile*
+CPProject2
+moc_*
+ui_*.h
+.qmake.stash

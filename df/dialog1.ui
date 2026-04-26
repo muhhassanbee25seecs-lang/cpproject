@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog1</class>
+ <widget class="QDialog" name="Dialog1">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>630</width>
+    <height>630</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Attendance Management System</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #1a1a2e;</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>15</number>
+   </property>
+   <property name="leftMargin">
+    <number>30</number>
+   </property>
+   <property name="topMargin">
+    <number>30</number>
+   </property>
+   <property name="rightMargin">
+    <number>30</number>
+   </property>
+   <property name="bottomMargin">
+    <number>30</number>
+   </property>
+   
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">border: none;</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>15</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: #00d2ff; border: none; border-radius: 8px; padding: 15px; color: #1a1a2e; font-size: 16px; font-family: "Lato"; font-weight: bold; }
+QPushButton:hover { background-color: #00b8e6; }
+QPushButton:pressed { background-color: #0099cc; }</string>
+        </property>
+        <property name="text">
+         <string>START CAMERA</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="styleSheet">
+         <string notr="true">QPushButton { background-color: #3a3a4f; border: 2px solid #00d2ff; border-radius: 8px; padding: 15px; color: white; font-size: 16px; font-family: "Lato"; font-weight: bold; }
+QPushButton:hover { background-color: #4a4a66; }
+QPushButton:pressed { background-color: #2c2c3c; }</string>
+        </property>
+        <property name="text">
+         <string>MARK ATTENDANCE</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation"><enum>Qt::Horizontal</enum></property>
+     <property name="styleSheet"><string notr="true">background-color: #2c2c3c;</string></property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="styleSheet">
+      <string notr="true">font-family: "Lato"; font-size: 14px; font-weight: bold; color: #00d2ff; text-transform: uppercase;</string>
+     </property>
+     <property name="text">
+      <string>Student Name:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="minimumSize">
+      <size><width>0</width><height>45</height></size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit { background-color: #252a41; border: 1px solid #3a3a4f; border-radius: 5px; padding-left: 15px; color: white; font-size: 16px; }
+QLineEdit:focus { border: 1px solid #00d2ff; }</string>
+     </property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QLabel" name="label_roll">
+     <property name="styleSheet">
+      <string notr="true">font-family: "Lato"; font-size: 14px; font-weight: bold; color: #00d2ff; text-transform: uppercase;</string>
+     </property>
+     <property name="text">
+      <string>Roll Number:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="lineEdit_roll">
+     <property name="minimumSize">
+      <size><width>0</width><height>45</height></size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit { background-color: #252a41; border: 1px solid #3a3a4f; border-radius: 5px; padding-left: 15px; color: white; font-size: 16px; }
+QLineEdit:focus { border: 1px solid #00d2ff; }</string>
+     </property>
+     <property name="placeholderText">
+      <string>e.g. 101, 202...</string>
+     </property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="styleSheet">
+      <string notr="true">font-family: "Lato"; font-size: 14px; font-weight: bold; color: #00d2ff; text-transform: uppercase;</string>
+     </property>
+     <property name="text">
+      <string>Attendance Status:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="lineEdit_2">
+     <property name="minimumSize">
+      <size><width>0</width><height>45</height></size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLineEdit { background-color: #252a41; border: 1px solid #3a3a4f; border-radius: 5px; padding-left: 15px; color: #2ecc71; font-size: 16px; font-weight: bold; }
+QLineEdit:focus { border: 1px solid #00d2ff; }</string>
+     </property>
+    </widget>
+   </item>
+
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0">
+      <size><width>20</width><height>20</height></size>
+     </property>
+    </spacer>
+   </item>
+
+   <item>
+    <widget class="QPushButton" name="btn_save">
+     <property name="styleSheet">
+      <string notr="true">QPushButton { 
+    background-color: #1a1a2e; 
+    border: 2px solid #2ecc71; 
+    border-radius: 8px; 
+    padding: 15px; 
+    color: #2ecc71; 
+    font-size: 16px; 
+    font-family: "Lato"; 
+    font-weight: bold; 
+}
+QPushButton:hover { background-color: #2ecc71; color: #1a1a2e; }
+QPushButton:pressed { background-color: #27ae60; }</string>
+     </property>
+     <property name="text">
+      <string>💾 SAVE DATA</string>
+     </property>
+    </widget>
+   </item>
+
+  </layout>
+ </widget>
+</ui>

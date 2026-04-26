@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog3</class>
+ <widget class="QDialog" name="Dialog3">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1001</width>
+    <height>609</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Security Dashboard - Risk Alerts</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+    QDialog {
+        background-color: #0d1117;
+    }
+
+    QLabel#label {
+        background-color: #161b22;
+        padding: 15px;
+        color: #ff5f57;
+        letter-spacing: 2px;
+        border-bottom: 2px solid #ff5f57;
+        font-family: 'Segoe UI', 'Lato';
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    QTableWidget {
+        background-color: #0d1117;
+        color: #c9d1d9;
+        gridline-color: #30363d;
+        border: none;
+        font-family: 'Segoe UI', 'Lato';
+        font-size: 14px;
+        selection-background-color: rgba(255, 95, 87, 0.15);
+        selection-color: #ffffff;
+    }
+
+    QHeaderView::section {
+        background-color: #161b22;
+        color: #8b949e;
+        padding: 12px; /* Increased padding */
+        border: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-bottom: 2px solid #30363d;
+        font-size: 12px;
+    }
+
+    QTableWidget::item {
+        padding: 15px; /* Added more vertical and horizontal padding for data */
+        border-bottom: 1px solid #21262d;
+    }
+
+    QScrollBar:vertical {
+        border: none;
+        background: #0d1117;
+        width: 10px;
+    }
+    QScrollBar::handle:vertical {
+        background: #30363d;
+        border-radius: 5px;
+    }
+   </string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>⚠️ SYSTEM RISK ALERTS</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="tablePaddingLayout">
+     <property name="leftMargin">
+      <number>30</number>
+     </property>
+     <property name="topMargin">
+      <number>30</number>
+     </property>
+     <property name="rightMargin">
+      <number>30</number>
+     </property>
+     <property name="bottomMargin">
+      <number>30</number>
+     </property>
+     <item>
+      <widget class="QTableWidget" name="risktable">
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <property name="showGrid">
+        <bool>false</bool>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>200</number>
+       </attribute>
+       <attribute name="horizontalHeaderMinimumSectionSize">
+        <number>150</number>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <row><property name="text"><string>1.</string></property></row>
+       <row><property name="text"><string>2.</string></property></row>
+       <row><property name="text"><string>3.</string></property></row>
+       <row><property name="text"><string>4.</string></property></row>
+       <row><property name="text"><string>5.</string></property></row>
+       <column><property name="text"><string>STUDENT NAME</string></property></column>
+       <column><property name="text"><string>TOTAL CLASSES</string></property></column>
+       <column><property name="text"><string>ABSENT CLASSES</string></property></column>
+       <column><property name="text"><string>PERCENTAGE</string></property></column>
+       <column><property name="text"><string>STATUS</string></property></column>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+</ui>
