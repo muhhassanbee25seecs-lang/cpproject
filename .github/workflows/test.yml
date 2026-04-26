@@ -24,7 +24,7 @@ jobs:
           push: true
           # 'load: true' allows the next step to use the image without pulling it
           load: true 
-          tags: hackson1/attendance-app:latest
+          tags: hackson12/attendance-app:latest
 
       - name: Run Smoke Test (Headless)
         run: |
@@ -32,4 +32,4 @@ jobs:
           docker run --rm \
             -e QT_QPA_PLATFORM=offscreen \
             -e XDG_RUNTIME_DIR=/tmp \
-            hackson1/attendance-app:latest ./your_app_binary --help || echo "Smoke test bypassed or completed."
+            hackson12/attendance-app:latest ./your_app_binary --help || echo "Smoke test bypassed or completed."
