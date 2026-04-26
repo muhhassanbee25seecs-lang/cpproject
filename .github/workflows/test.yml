@@ -32,4 +32,4 @@ jobs:
           docker run --rm \
             -e QT_QPA_PLATFORM=offscreen \
             -e XDG_RUNTIME_DIR=/tmp \
-            hackson12/attendance-app:latest ./your_app_binary --help || echo "Smoke test bypassed or completed."fdf
+            hackson12/attendance-app:latest ./your_app_binary --help || echo "Smoke test bypassed or completed."
